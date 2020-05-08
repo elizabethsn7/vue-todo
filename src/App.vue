@@ -2,52 +2,53 @@
   <div class="container">
     <div id="todo-list">
       <div class="row">
-        <div class="header">
+        <div class="md-display-1">
           <h1>{{ header }}</h1>
         </div>
       </div>
+
       <div class="row">
-        <md-field class="add-todo-form">
-          <md-input
-            v-model="currentTodo"
-            @keydown.enter="addTodo()"
-            placeholder="Add a todo!"
-          ></md-input>
-        </md-field>
-        <!-- <div class="add-todo-form"></div> -->
-
-        <ul class="todos">
-          <li
-            v-for="todo in todos"
-            :key="todo.id"
-            :class="{ editing: todo == editedTodo }"
-          >
-            <input
-              class="completedButton"
-              type="checkbox"
-              v-model="todo.completed"
-            />
-            <span
-              class="todo-item-label"
-              :class="{ completed: todo.completed }"
-              @dblclick="editTodo(todo)"
-              v-if="!todo.edit"
+        <md-card md-with-hover class="cardShark">
+          <md-field md-clearable>
+            <label>Add a todo</label>
+            <md-input
+              v-model="currentTodo"
+              @keydown.enter="addTodo()"
+            ></md-input>
+          </md-field>
+          <md-card-header>
+            <div class="md-title">
+              You can...<br />Complete It, Delete It, or Double Click It
+            </div>
+          </md-card-header>
+          <md-list class="todos">
+            <md-list-item
+              v-for="todo in todos"
+              :key="todo.id"
+              :class="{ editing: todo == editedTodo }"
             >
-              {{ todo.label }}
-            </span>
-            <input
-              v-else
-              class="todo-item-edit"
-              type="text"
-              v-model="todo.label"
-              @keyup.enter="completedEdit(todo)"
-            />
-
-            <button @click="removeTodo(todo)" class="btn btn-accent">
-              Delete
-            </button>
-          </li>
-        </ul>
+              <md-checkbox v-model="todo.completed"></md-checkbox>
+              <span
+                class="todo-item-label"
+                :class="{ completed: todo.completed }"
+                @dblclick="editTodo(todo)"
+                v-if="!todo.edit"
+              >
+                {{ todo.label }}
+              </span>
+              <input
+                v-else
+                class="todo-item-edit"
+                type="text"
+                v-model="todo.label"
+                @keyup.enter="completedEdit(todo)"
+              />
+              <md-card-actions>
+                <md-button @click="removeTodo(todo)">Delete</md-button>
+              </md-card-actions>
+            </md-list-item>
+          </md-list>
+        </md-card>
       </div>
     </div>
   </div>
@@ -57,7 +58,7 @@
 export default {
   data() {
     return {
-      header: "Todo List App Created with Vue.js",
+      header: "Created with Vue.js & Material UI",
       todos: [],
       currentTodo: "",
       completed: false,
@@ -88,8 +89,32 @@ export default {
 };
 </script>
 
-<style>
-.row {
-  margin: 35px;
+<style scoped>
+.container {
+  margin: 0 auto;
+  width: 75%;
+  min-height: calc(100% - 20px);
+}
+.md-display-1 {
+  line-height: 65px;
+}
+label {
+  margin-left: 15px;
+}
+.md-card-header {
+  padding-top: 10px;
+}
+.md-title {
+  text-align: center;
+}
+.md-field {
+  margin: 4px 0 20px;
+  padding-left: 15px;
+}
+.cardShark {
+  width: 100%;
+  margin: 4px;
+  display: inline-block;
+  vertical-align: top;
 }
 </style>
