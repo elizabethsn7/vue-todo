@@ -11,14 +11,12 @@
         <md-card md-with-hover class="cardShark">
           <md-field md-clearable>
             <label>Add a todo</label>
-            <md-input
-              v-model="currentTodo"
-              @keydown.enter="addTodo()"
-            ></md-input>
+            <md-input v-model="currentTodo" @keydown.enter="addTodo()"></md-input>
           </md-field>
           <md-card-header>
             <div class="md-title">
-              You can...<br />Complete It, Delete It, or Double Click It
+              You can...
+              <br />Complete It, Delete It, and Double Click To Edit
             </div>
           </md-card-header>
           <md-list class="todos">
@@ -33,9 +31,7 @@
                 :class="{ completed: todo.completed }"
                 @dblclick="editTodo(todo)"
                 v-if="!todo.edit"
-              >
-                {{ todo.label }}
-              </span>
+              >{{ todo.label }}</span>
               <input
                 v-else
                 class="todo-item-edit"
@@ -92,7 +88,7 @@ export default {
 <style scoped>
 .container {
   margin: 0 auto;
-  width: 75%;
+  width: 70%;
   min-height: calc(100% - 20px);
 }
 .md-display-1 {
