@@ -2,5 +2,5 @@
 //   publicPath: process.env.NODE_ENV === "production" ? "/vue-todo/" : "/"
 // };
 module.exports = {
-  publicPath: "/vue-todo/"
+	publicPath: '/vue-todo/'
 };
